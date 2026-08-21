@@ -1,0 +1,4 @@
+interface:
+  display_name: "Product Advisory Board"
+  short_description: "Bring grounded product thinkers into decisions"
+  default_prompt: "Use $product-advisory-board to challenge this product decision with the most relevant advisors."

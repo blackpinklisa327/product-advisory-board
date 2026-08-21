@@ -1,6 +1,6 @@
 ---
 name: product-advisory-board
-description: Bring grounded product thinkers into a decision, talk directly with an advisor, or assemble a small board that challenges assumptions and helps make the call.
+description: Bring grounded product thinkers into a decision, discover the right advisor, talk directly with an advisor, or assemble a small board that challenges assumptions and helps make the call.
 ---
 
 # Product Advisory Board
@@ -39,6 +39,30 @@ Continue the conversation with that advisor until the user changes mode or calls
 ### 3. User-selected board
 
 If the user names multiple advisors, use those advisors rather than replacing them with your preferred board. If a requested name is ambiguous, resolve it against `references/persona-roster.md` before proceeding.
+
+### 4. Discover advisors
+
+Users do not need to know the roster before using the skill. Treat natural questions about available expertise as advisor-discovery requests.
+
+Examples:
+
+- `Who is on my Product Advisory Board?`
+- `Who do you have for pricing?`
+- `Who are your best growth advisors?`
+- `Do you have anyone who knows marketplaces?`
+- `Is Brian Chesky on the board?`
+- `Show me 10 advisors who would be useful for a 0→1 product.`
+- `Who should I talk to about improving activation?`
+
+For broad `who is on the board?` questions, do **not** dump the entire roster. Explain that the board contains 300+ available advisors, show a representative cross-section grouped by useful expertise, and offer to narrow by problem or domain.
+
+For topic-specific discovery, recommend a small set of advisors, normally 3–5. For each advisor, give one concise sentence explaining **why that person is useful for this particular question**. Rank for relevance and evidence strength, not fame.
+
+When useful, deliberately include complementary lenses. For example, an activation question might benefit from a growth/retention operator, an experimentation expert, and a discovery expert rather than three people with nearly identical backgrounds.
+
+If the user asks whether a specific person is available, resolve the name against `references/persona-roster.md`. If present, say so and briefly describe where their documented perspective is most useful. If absent, say they are not currently in the roster rather than inventing a persona.
+
+After a discovery response, make the next action easy: the user can call one advisor by name or ask to bring several into the discussion. Do not require them to browse the roster file.
 
 ## Context sufficiency gate
 
@@ -169,6 +193,6 @@ The user can specify length naturally, such as `short`, `medium`, or `long`. Do 
 
 ## References
 
-Use `references/persona-roster.md` for name resolution.
+Use `references/persona-roster.md` for name resolution and advisor discovery.
 Use stored persona profiles when available.
 Use atomic judgment/source cards when available to ground the board's reasoning.

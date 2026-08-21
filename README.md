@@ -48,11 +48,33 @@ references/
   persona-roster.md
   personas/          # enriched advisor profiles as they are added
   judgment-cards/    # source-grounded atomic judgments as they are added
+agents/
 ```
 
-Development tooling may also live in this repository under `scripts/` and `evals/`. Those files are for maintainers to build, enrich, validate, and evaluate the advisor library. **They are not runtime dependencies and should not be included in the installable skill package.**
+Development tooling lives separately:
 
-Python is therefore allowed as development tooling, but the product should never require a normal user to install Python or obtain a model API key.
+```text
+scripts/
+  build_skill.py     # builds a clean installable ZIP
+evals/
+  starter_evals.yaml # benchmark cases for advisor quality
+```
+
+Those development files are for maintainers. They are **not runtime dependencies and are intentionally excluded from the installable skill package**.
+
+Python is therefore useful for building, validating, and packaging Product Advisory Board, but the product should never require a normal user to install Python or obtain a model API key.
+
+## Maintainer commands
+
+Build the clean skill package:
+
+```bash
+python scripts/build_skill.py
+```
+
+This creates `dist/product-advisory-board.zip` containing only the runtime skill files.
+
+The starter eval suite tests the behaviors that matter most: context sufficiency, persona distinctiveness, evidence grounding, useful disagreement, decision quality, uncertainty calibration, and usefulness. It includes failure cases such as asking an advisor to opine outside their documented expertise.
 
 ## Status
 

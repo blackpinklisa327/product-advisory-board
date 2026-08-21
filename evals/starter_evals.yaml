@@ -1,0 +1,103 @@
+version: 1
+name: product-advisory-board-starter-evals
+purpose: >
+  Test whether the skill produces more grounded, decision-changing product judgment
+  than a generic model response while preserving context sufficiency and persona boundaries.
+
+rubric:
+  context_sufficiency: 0-4
+  persona_distinctiveness: 0-4
+  evidence_grounding: 0-4
+  disagreement_quality: 0-4
+  decision_quality: 0-4
+  uncertainty_calibration: 0-4
+  usefulness: 0-4
+
+cases:
+  - id: retention_under_contextualized
+    prompt: "Ask Elena Verna to challenge this retention strategy: We should add more streak rewards to increase D30 retention."
+    expected:
+      - asks 1-3 high-information questions before recommending
+      - does not invent the product, cohorts, value moment, or evidence
+      - questions reflect a growth/retention lens
+
+  - id: retention_with_context
+    prompt: >
+      Ask Elena Verna to challenge this retention strategy. Product: a B2B KYB workflow.
+      Value: compliance teams resolve reviews faster with less manual work.
+      We do not yet know why usage declines by D30. Streak rewards are only a guess.
+    expected:
+      - rejects or sharply narrows the streak hypothesis
+      - distinguishes activity from value realization
+      - identifies the key evidence needed next
+
+  - id: discovery_direct_call
+    prompt: >
+      Teresa Torres, critique this plan: Five enterprise customers requested a dashboard,
+      so we should build the dashboard next quarter.
+    expected:
+      - challenges request-to-solution collapse
+      - asks about desired outcome and evidence of the underlying opportunity
+      - does not simply recommend more interviews
+
+  - id: positioning_board
+    prompt: >
+      Bring in April Dunford and Bob Moesta to debate how a new B2B workflow product
+      should position itself against spreadsheets and incumbent software.
+    expected:
+      - gives meaningfully different lenses
+      - surfaces alternatives and switching context
+      - resolves the disagreement into a concrete positioning direction or missing evidence
+
+  - id: pricing_board
+    prompt: >
+      Pick three advisors to debate whether a SaaS product should move from per-seat pricing
+      to usage-based pricing. We have enterprise buyers, variable usage, and complaints that
+      seat pricing penalizes broad adoption.
+    expected:
+      - selects relevant advisors rather than famous generalists
+      - discusses value metric, predictability, adoption behavior, and buyer risk
+      - makes a call with conditions rather than averaging opinions
+
+  - id: strategy_board
+    prompt: >
+      Pick three advisors to challenge this strategy: We want to serve startups, mid-market,
+      and global enterprises with the same core product this year.
+    expected:
+      - surfaces focus and segment tradeoffs
+      - identifies what must be true for one product to span all three
+      - makes explicit what should be deprioritized if evidence is weak
+
+  - id: uncertainty
+    prompt: >
+      Ask Annie Duke whether we should launch a risky feature. We have one positive customer
+      anecdote and no behavioral data.
+    expected:
+      - does not invent numeric probabilities
+      - distinguishes decision quality from outcome quality
+      - asks for or proposes a reversible test and a decision threshold
+
+  - id: weak_persona_fit
+    prompt: "Ask April Dunford how to optimize database query latency."
+    expected:
+      - recognizes weak persona-topic fit
+      - does not fabricate infrastructure expertise
+      - suggests using another advisor or reframes what April can credibly contribute
+
+  - id: user_selected_board
+    prompt: >
+      Bring in Elena Verna, Teresa Torres, and Annie Duke to debate whether we should build
+      an AI onboarding assistant after three customers requested it.
+    expected:
+      - uses exactly the requested advisors
+      - produces three distinct challenges
+      - resolves into a product decision and what evidence would change it
+
+  - id: direct_followup_behavior
+    prompt: >
+      Elena Verna, should we invest in referrals? Assume users who invite 3+ teammates retain
+      2x better, but we do not know whether inviting causes retention or merely correlates with it.
+    expected:
+      - explicitly addresses causality risk
+      - proposes a test or segmentation approach
+      - avoids claiming the correlation proves a referral loop
